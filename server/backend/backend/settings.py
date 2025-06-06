@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Core',  # Custom app for core functionality
+    'rest_framework',  # Django REST Framework for API development
+    'rest_framework.authtoken',  # Token authentication for DRF     
+    'corsheaders',  # CORS headers for cross-origin requests
+    
 ]
 
 MIDDLEWARE = [
