@@ -14,7 +14,7 @@ export const HomePage = {
             css: "image-container",
             template: `
                 <div class="image-container">
-                    <h2 class="h2tag">Welcome to the <span class="app-name">Demo App!</span></h2>
+                    <h2 class="h2tag">Your Own <span class="app-name">Customizable App!</span></h2>
                 </div>
             `
         },
@@ -53,7 +53,7 @@ export const HomePage = {
                       rows: [
                         {
                           template:`<div class="info-section">
-                           <h2 class="about-text">Guide</h2>
+                           <h2 class="about-text">About Us</h2>
                            <p>We are dedicated to providing the best user experience with personalized settings and seamless navigation.</p>
                            </div>`,
                           autoheight: true

@@ -1,0 +1,398 @@
+/*
+ * styles.css
+ * Global styles, Webix component overrides, and theme variables.
+ */
+
+/* --- 1. CSS Custom Properties (Variables) --- */
+/* These define your application's color palette for light and dark modes. */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #e2e0e0;
+    --text-color: #000000;
+
+    /* Navbar Specific */
+    --nav-bg-color: #f5f5f5;
+    --nav-border-color: #e0e0e0;
+    --nav-text-color: #061e6a; /* Text color for buttons in navbar */
+    --nav-icon-color: #4CAF50; /* Home icon color */
+    --nav-icon-hover-color: #388E3C;
+
+    /* Button Specific */
+    --btn-primary-bg: #039c2f;
+    --btn-primary-text: #ffffff;
+    --btn-logout-bg: #f44336;
+    --btn-login-bg: #2196F3;
+    --btn-signup-bg: #4CAF50;
+    --btn-customize-bg: #FFC107;
+    --btn-customize-text: #333; /* Dark text for light button background */
+    --btn-shadow-color: rgba(59, 130, 246, 0.3); /* Base shadow color for buttons */
+
+    /* Form Specific */
+    --form-bg-color: rgba(255, 255, 255, 0.95);
+    --form-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --input-border-color: #ccc; /* Default input border */
+    --input-placeholder-color: #9ca3af;
+    --input-focus-shadow-color: rgba(59, 130, 246, 0.25); /* Focus outline color */
+
+    /* Text & Links */
+    --login-description-color: #555; /* Adjusted for better contrast if not already dark */
+    --link-color: #3b82f6;
+    --error-color: #ef4444;
+
+    /* Custom component background/shadow - assuming for login-container if it's a card */
+    --card-bg-color: rgba(255, 255, 255, 0.95);
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode {
+    /* Dark Mode Overrides */
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+
+    /* Navbar Specific */
+    --nav-bg-color: #333333;
+    --nav-border-color: #444444;
+    --nav-text-color: #e0e0e0;
+    --nav-icon-color: #A7D9FF;
+    --nav-icon-hover-color: #6CB5FF;
+
+    /* Button Specific */
+    --btn-primary-bg: #181c9e;
+    --btn-primary-text: #ffffff;
+    --btn-logout-bg: #C62828;
+    --btn-login-bg: #1E88E5;
+    --btn-signup-bg: #4CAF50; /* Can remain same or adjust */
+    --btn-customize-bg: #FFB300;
+    --btn-customize-text: #333;
+    --btn-shadow-color: rgba(26, 115, 174, 0.801); /* Matching your login-button shadow */
+
+    /* Form Specific */
+    --form-bg-color: rgba(30, 30, 30, 0.95);
+    --form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --input-border-color: #555;
+    --input-placeholder-color: #d6d2d2;
+    --input-focus-shadow-color: rgba(96, 165, 250, 0.4); /* Lighter focus outline */
+
+    /* Text & Links */
+    --login-description-color: #e0e0e0;
+    --link-color: #60a5fa;
+    --error-color: #fca5a5;
+
+    /* Custom component background/shadow */
+    --card-bg-color: rgba(30, 30, 30, 0.95);
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 2. Global HTML/Body Styles --- */
+/* Ensures the app fills the screen and hides overflow for smooth scrolling. */
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Important for Webix layouts to manage scrolling */
+}
+
+/* Base font size adjustment for mobile, if needed */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Prevent iOS auto-zoom on input */
+    }
+}
+
+/* --- 3. Webix General View Styles --- */
+/* Applies background and text colors based on the theme to all Webix views. */
+.webix_view {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth theme transition */
+}
+
+/* --- 4. Navbar Specific Styles (Consolidated from navbar.css) --- */
+/* Styles for the main application navigation bar. */
+.navContainer {
+    background-color: var(--nav-bg-color); /* Use theme variable */
+    border-bottom: 1px solid var(--nav-border-color); /* Use theme variable */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0 15px;
+    /* Webix toolbar is already flex; these ensure alignment */
+    display: flex;
+    align-items: center;
+}
+
+/* Home Icon */
+.navContainer .webix_icon {
+    color: var(--nav-icon-color);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.navContainer .webix_icon:hover {
+    color: var(--nav-icon-hover-color);
+}
+
+/* Button text color within Navbar */
+.navContainer .webix_el_button .webix_button {
+    color: var(--nav-text-color) !important; /* !important needed due to Webix defaults */
+    font-weight: 600;
+}
+
+/* --- 5. Page Specific Styles --- */
+
+/* --- Signup Page Background and Overlay --- */
+#signup {
+    background-image: url('../assets/backgroundimg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: relative !important;
+    overflow: hidden;
+    transition: background-image 0.3s ease-in-out;
+}
+
+#signup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use theme variable for overlay color, or keep fixed */
+    background-color: rgba(198, 83, 83, 0.5); /* Fixed value as per your code */
+    backdrop-filter: blur(5px);
+    z-index: 0;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Dark mode overlay for signup page */
+body.dark-mode #signup::before {
+    background-color: rgba(0, 0, 0, 0.7) !important; /* Darker overlay in dark mode */
+}
+
+
+/* --- Login Page Specific Container (Assuming this is a custom view structure) --- */
+/* This seems to be a container for your login form, potentially for specific background/layout */
+.login-container {
+    /* If you want a background image only for the container itself, define it here */
+    /* background-image: url('../assets/homeop.jpg') !important; */
+    /* background-blend-mode: overlay !important; */
+    /* opacity: 0.99 !important; */ /* Opacity applies to the whole container, usually avoid */
+
+    background-color: var(--card-bg-color) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--card-shadow) !important;
+    padding: 30px !important;
+    box-sizing: border-box !important;
+    max-width: 400px;
+    margin: 20px auto; /* Center the container with vertical margin */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    min-height: 200px;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Description text inside login-container */
+.login-container .description {
+    color: var(--login-description-color) !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    max-width: 90% !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+}
+
+/* Login button inside login-container */
+.login-container .login-button {
+    background-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 25px !important;
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out !important;
+    box-shadow: 0 4px 10px var(--btn-shadow-color) !important; /* Use variable */
+    letter-spacing: 0.5px;
+    min-width: 150px;
+}
+
+.login-container .login-button:hover {
+    filter: brightness(90%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+
+/* --- 6. Form Component Styles (for signup/login forms) --- */
+/* Applies a consistent look to all forms inside signup and login pages. */
+#signup .webix_form,
+#login .webix_form {
+    background-color: var(--form-bg-color) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--form-shadow) !important;
+    padding: 40px !important;
+    box-sizing: border-box !important;
+    max-width: 450px !important;
+    width: 100% !important;
+    z-index: 1; /* Above the background overlay */
+    position: relative; /* Needed for z-index to work */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* --- 7. Input Field Styles --- */
+/* General styling for Webix text input fields. */
+.webix_el_text input {
+    border: 1px solid var(--input-border-color) !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    font-size: 16px !important;
+    transition: all 0.2s ease-in-out !important;
+    color: var(--text-color) !important;
+    background-color: var(--bg-color) !important;
+    line-height: 1.5;
+}
+
+.webix_el_text input:focus {
+    border-color: var(--link-color) !important;
+    box-shadow: 0 0 0 3px var(--input-focus-shadow-color) !important;
+    outline: none !important;
+}
+
+/* Placeholder text color */
+.webix_el_text input::placeholder {
+    color: var(--input-placeholder-color) !important;
+}
+
+/* --- 8. Button Styles --- */
+/* General button styling for Webix buttons (excluding navbar which has specific text color). */
+/* Note: '.test-btn .webix_button' might be a specific button type. Keep it if it has unique properties. */
+.webix_el_button button {
+    background-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+    box-shadow: 0 4px 10px var(--btn-shadow-color) !important; /* Use variable */
+}
+
+.webix_el_button button:hover {
+    filter: brightness(85%) !important;
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Specific button colors (using attribute selectors for clarity) */
+/* These will override the general .webix_el_button for these specific buttons */
+.webix_button[aria-label="LOGOUT"] button {
+    background-color: var(--btn-logout-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+.webix_button[aria-label="LOG IN"] button {
+    background-color: var(--btn-login-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+.webix_button[aria-label="SIGNUP"] button {
+    background-color: var(--btn-signup-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+/* Note: The 'Customise' button seems to be defined as 'Cutomize' in Navbar.js */
+.webix_button[aria-label="Cutomize"] button { /* Adjusted for your Navbar.js label */
+    background-color: var(--btn-customize-bg) !important;
+    color: var(--btn-customize-text) !important; /* Specific text color for this button */
+}
+
+/* --- 9. Toolbar (Form Header) Styling --- */
+/* Styles for toolbars that act as headers for forms (e.g., login, signup forms). */
+.webix_toolbar {
+    background-color: transparent !important; /* Often transparent in forms */
+    color: var(--text-color) !important;
+    border-bottom: none !important;
+    padding: 10px 0 !important;
+}
+
+.webix_toolbar .webix_label {
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    color: var(--text-color) !important;
+    text-align: center !important;
+    flex-grow: 1;
+    letter-spacing: 0.5px;
+}
+
+.webix_toolbar .webix_icon {
+    font-size: 24px !important;
+    color: var(--text-color) !important;
+    cursor: pointer !important;
+}
+
+/* --- 10. Text & Link Specific Styles --- */
+/* Password error message */
+.password-error-message {
+    color: var(--error-color) !important;
+    font-size: 14px !important;
+    margin-top: 5px !important;
+    text-align: center;
+}
+
+/* "Already have an account?" text (general text in form) */
+.login-text {
+    text-align: center !important;
+    font-size: 16px !important;
+    color: var(--login-description-color) !important;
+}
+
+/* Login/Signup link */
+.login-link {
+    color: var(--link-color) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+.login-link:hover {
+    text-decoration: underline !important;
+}
+
+/* --- 11. Webix Switch (Theme Toggle) Icons --- */
+/* Specific styling for the sun/moon icons within the Webix switch component. */
+.webix_switch_button .webix_icon {
+    font-size: 16px; /* Smaller icons for the switch */
+    vertical-align: middle;
+    color: inherit; /* Inherit color from the switch component */
+}
+.webix_switch_button .webix_icon.fa-sun {
+    color: orange; /* Light mode sun icon color */
+}
+.webix_switch_button .webix_icon.fa-moon {
+    color: purple; /* Dark mode moon icon color */
+}
+/* Dark mode specific colors for switch icons */
+.dark-mode .webix_switch_button .webix_icon.fa-sun {
+    color: #FFEB3B; /* Brighter yellow for dark mode sun */
+}
+.dark-mode .webix_switch_button .webix_icon.fa-moon {
+    color: #E0BBE4; /* Lighter purple for dark mode moon */
+}
+
+
+/* --- 12. Helper / Alignment Classes (from Navbar.js) --- */
+/* These classes are applied to specific Webix UI components for layout adjustments. */
+.centerAlign {
+    /* If this is for a Webix button, Webix often wraps it in its own div. */
+    /* This will align text within the button */
+    text-align: center;
+    margin: 0 8px; /* Example: add some horizontal margin */
+}
+.rightAlign {
+    margin-left: 10px; /* Spacing for elements aligned to the right */
+}
+.reduceSpacing {
+    margin-right: 5px; /* Reduce spacing between elements */
+    margin-left: 5px;
+}

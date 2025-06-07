@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Preferences Page</title>
+
+    <!-- added  -->
+    <!-- ADD THIS LINE: Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ADD THIS LINE: Inter Font for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     
     <link rel="stylesheet" href="https://cdn.webix.com/edge/webix.css">
     
     <link rel="stylesheet" href="styles/styles.css">
+
     <!-- <link rel="stylesheet" href="./app.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <!-- Webix Dark Theme -->
     <link rel="stylesheet" type="text/css" href="https://cdn.webix.com/edge/skins/dark.css" disabled>
     <link rel="stylesheet" href="styles/pages/home.css">
-    <link rel="stylesheet" href="styles/pages/login.css">
-    <link rel="stylesheet" href="styles/pages/settings.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
@@ -28,6 +33,8 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            /* ADD THIS LINE: Set Inter font globally */
+            font-family: 'Inter', sans-serif;
         }
         
         /* Prevent text from being too small on mobile */
@@ -36,6 +43,45 @@
                 font-size: 16px; /* Prevent iOS auto-zoom on input */
             }
         }
+
+
+        /* Semi-transparent overlay for better text readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(235, 35, 35, 0.5); /* Adjust opacity as needed */
+            backdrop-filter: blur(5px); /* Optional: Adds a blur effect to the background image */
+            z-index: -1; /* Place behind all content */
+        }
+
+        /* Ensure Webix main layout containers are transparent to reveal body background */
+        .webix_layout_rows,
+        .webix_layout_cols,
+        .webix_view,
+        .webix_scrollview,
+        .webix_multiview_cell {
+            background-color: transparent !important;
+        }
+
+        /* Make sure the signup form itself has a distinct background */
+        /* This targets the specific signup form by its ID from signup.js */
+        #signup .webix_form { 
+            background-color: rgba(214, 64, 64, 0.95) !important; /* Semi-transparent white */
+            border-radius: 12px !important;
+            box-shadow: 0 10px 30px rgba(70, 8, 8, 0.2) !important;
+            padding: 30px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Adjustments for dark mode compatibility (important if your background is light/dark independent) */
+        body.dark-mode::before {
+             background-color: rgba(0, 0, 0, 0.7) !important; /* Darker overlay for dark mode */
+        }
+        /* --- END OF NEW/MODIFIED BACKGROUND & OVERLAY STYLES --- */
     </style>
 </head>
 <body>

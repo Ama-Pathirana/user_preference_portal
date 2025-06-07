@@ -1,10 +1,10 @@
 import { Navbar } from "./components/navbar.js";
-// import { HomePage } from "./pages/home.js";
-// import { LoginPage } from "./pages/login.js";
-// import { SignupPage } from "./pages/signup.js";
-// import { SettingsPage } from "./pages/settings.js";
-// import { ForgotPasswordPage } from "./pages/forgotpassword.js";
-// import { OtpVerificationPage } from "./pages/otpverify.js";
+import { HomePage } from "./pages/home.js";
+import { LoginPage } from "./pages/login.js";
+import { SignupPage } from "./pages/signup.js";
+import { SettingsPage } from "./pages/settings.js";
+import { ForgotPasswordPage } from "./pages/forgotpassword.js";
+import { OtpVerificationPage } from "./pages/otpverify.js";
 
 webix.ready(function () {
   let isDarkMode = false;
@@ -19,12 +19,12 @@ webix.ready(function () {
           view: "multiview",
           id: "mainView",
           cells: [
-          //   { id: "home", ...HomePage },
-          //   { id: "login", ...LoginPage },
-          //   { id: "signup", ...SignupPage },
-          //   { id: "settings", ...SettingsPage },
-          //   { id: "forgotpassword", ...ForgotPasswordPage },
-          //   { id: "otpverification", ...OtpVerificationPage },
+            { id: "home", ...HomePage },
+            { id: "login", ...LoginPage },
+            { id: "signup", ...SignupPage },
+            { id: "settings", ...SettingsPage },
+            { id: "forgotpassword", ...ForgotPasswordPage },
+            { id: "otpverification", ...OtpVerificationPage },
           ],
         },
       },

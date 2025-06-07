@@ -1,0 +1,185 @@
+/*
+ * home.css
+ * Specific styles for the Home Page (id: "home")
+ */
+
+/* --- 1. Main Home Container Layout --- */
+/* This ensures the home page itself has its proper flex layout. */
+/* If .home-container is applied to the main Webix view (e.g., id: "home"),
+   then you need to ensure this doesn't conflict with .webix_view global background.
+   Using a nested layout might be safer if #home itself isn't a flex container. */
+.home-container .webix_layout {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 55%; /* This height is specific to home page layout */
+}
+
+/* --- 2. Image Container Section --- */
+/* Styles for the template that holds the background image and overlay text. */
+.image-container .webix_template {
+    background-image: url("../../assets/homeimage.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    flex-direction: column !important;
+    padding: 20px 40px !important;
+    position: relative !important;
+    text-align: left !important;
+    color: white !important; /* Text on top of image is white */
+}
+
+/* --- 3. Specific Text Styles within Home Page --- */
+.h2tag {
+    font-size: 35px !important;
+    font-weight: bold !important;
+    color: rgb(22, 20, 20) !important; /* Specific color for this h2 */
+    margin-top: 10px !important;
+}
+
+.app-name {
+    color: #004AAD !important; /* Specific blue for app name */
+    font-weight: bold !important;
+}
+
+.h3tag .webix_template {
+    font-size: 25px !important;
+    font-weight: bold !important;
+    color: rgb(22, 20, 20) !important; /* Specific color for this h3 */
+    margin-top: 10px !important;
+}
+
+/* --- 4. Home Page Specific Login/Registration Section --- */
+/* Remove redundant .login-container styles. Keep only layout-specific for this section. */
+.home-page-login-section { /* Renamed for clarity, assuming a wrapper div or view */
+    height: 40%; /* Specific height for this section on home page */
+    /* Remove background, shadow, padding, etc., they should come from styles.css .login-container */
+    /* If this section needs its own unique background/shadow, use distinct classes/variables */
+}
+
+/* If the description and button within the home page's login section need specific overrides */
+.home-page-login-section .description {
+    /* Only override what's absolutely necessary here, otherwise styles.css rule applies */
+    font-size: 16px; /* Your desired font size for this specific description */
+    font-weight: 600;
+    line-height: 1.5;
+    max-width: 90%;
+    text-align: center;
+    /* margin-top: 20% !important; */ /* Uncomment if this margin is specific to home */
+}
+
+.home-page-login-section .login-button {
+    /* This overrides the general primary button style from styles.css */
+    background: linear-gradient(90deg, #1CA1C1 0%, #aabad0 100%) !important;
+    color: white !important;
+    margin-top: 15px !important;
+    padding: 12px 20px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    transition: background 0.3s ease, transform 0.2s ease !important;
+}
+
+/* --- 5. Columns for Layout (if used on Home Page) --- */
+.left-column, .right-column {
+    flex: 1 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* --- 6. Specific Buttons on Home Page (e.g., Register buttons) --- */
+.register-button .webix_button {
+    background: linear-gradient(90deg, #004AAD 0%, #001E47 100%) !important;
+    color: white !important;
+    margin-top: 15px !important;
+    padding: 12px 20px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    border: none !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    transition: background 0.3s ease, transform 0.2s ease !important;
+}
+
+.register-button1 .webix_button {
+    background: linear-gradient(90deg, #004AAD 0%, #001E47 100%) !important;
+    color: rgb(224, 198, 79) !important; /* Specific color */
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    transition: background 0.3s ease, transform 0.2s ease !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    width: 200px !important;
+    margin: auto !important;
+    margin-left: 75px !important;
+}
+
+/* --- 7. Info Section and Contact Info --- */
+.info-section .about-text,
+.info-section .contact-section {
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    color: #3ca5c0 !important; /* Specific color */
+    max-width: 90% !important;
+    text-align: left !important;
+}
+
+.info-section .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 10px;
+    background: #5d77df; /* Fixed background for this section */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(42, 63, 146, 0.1);
+    margin: 20px auto;
+}
+
+.contact-icon {
+    text-align: center;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.contact-icon i {
+    color: #06770a; /* Specific color for contact icon */
+    cursor: pointer;
+}
+
+.contact-icon:hover i {
+    transform: scale(1.2);
+    color: #770619; /* Specific hover color */
+}
+
+/* --- Dark Mode adjustments for home.css specific elements (if needed) --- */
+/* Add dark mode overrides here for elements that are only in home.css */
+body.dark-mode .h2tag,
+body.dark-mode .h3tag .webix_template {
+    color: var(--text-color) !important; /* Use dark mode text color */
+}
+
+body.dark-mode .home-page-login-section .description {
+    color: var(--login-description-color); /* Use dark mode login description color */
+}
+
+body.dark-mode .info-section .about-text,
+body.dark-mode .info-section .contact-section {
+    color: var(--nav-text-color) !important; /* Adjust to a suitable dark mode color */
+}
+
+body.dark-mode .info-section .contact-info {
+    background: #444; /* Darker background for contact info in dark mode */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .contact-icon i {
+    color: #A7D9FF; /* Lighter icon color in dark mode */
+}
+
+body.dark-mode .contact-icon:hover i {
+    color: #6CB5FF; /* Lighter hover color in dark mode */
+}
