@@ -1,0 +1,378 @@
+/* Professional Navbar Styles */
+
+/* Main Navbar Container */
+.navContainer {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dark theme navbar */
+.dark-theme .navContainer {
+    background: rgba(45, 55, 72, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Navbar Icons */
+.navContainer .webix_icon {
+    color: #4a5568;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.navContainer .webix_icon:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    transform: translateY(-1px);
+}
+
+.dark-theme .navContainer .webix_icon {
+    color: #cbd5e0;
+}
+
+.dark-theme .navContainer .webix_icon:hover {
+    background: rgba(102, 126, 234, 0.2);
+    color: #a78bfa;
+}
+
+/* Home Icon Special Styling */
+.navContainer .webix_icon[class*="mdi-home"] {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.navContainer .webix_icon[class*="mdi-home"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Settings Icon */
+.navContainer .webix_icon[class*="mdi-cog"] {
+    position: relative;
+}
+
+.navContainer .webix_icon[class*="mdi-cog"]:hover {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Button Styles */
+.navContainer .webix_button {
+    background: transparent;
+    border: 2px solid #667eea;
+    color: #667eea;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 40px;
+    line-height: 36px;
+    margin: 0 4px;
+}
+
+.navContainer .webix_button:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Logout Button Special Styling */
+.navContainer .webix_button[aria-label*="LOGOUT"],
+.navContainer .webix_button:contains("LOGOUT") {
+    border-color: #e53e3e;
+    color: #e53e3e;
+}
+
+.navContainer .webix_button[aria-label*="LOGOUT"]:hover,
+.navContainer .webix_button:contains("LOGOUT"):hover {
+    background: #e53e3e;
+    color: white;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+}
+
+/* Login Button */
+.navContainer .webix_button[aria-label*="LOG IN"],
+.navContainer .webix_button:contains("LOG IN") {
+    background: transparent;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+/* Signup Button */
+.navContainer .webix_button[aria-label*="SIGNUP"],
+.navContainer .webix_button:contains("SIGNUP") {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.navContainer .webix_button[aria-label*="SIGNUP"]:hover,
+.navContainer .webix_button:contains("SIGNUP"):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Theme Switch Styling */
+.navContainer .webix_switch {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    height: 40px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navContainer .webix_switch .webix_switch_button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    margin: 2px;
+}
+
+.navContainer .webix_switch.webix_switch_on {
+    background: #4299e1;
+    border-color: #4299e1;
+}
+
+.navContainer .webix_switch.webix_switch_on .webix_switch_button {
+    background: linear-gradient(135deg, #ffd93d, #ff9f43);
+}
+
+/* Theme Switch Icons */
+.navContainer .webix_switch .webix_icon.fa-sun {
+    color: #ffd93d;
+    font-size: 16px;
+}
+
+.navContainer .webix_switch .webix_icon.fa-moon {
+    color: #4299e1;
+    font-size: 16px;
+}
+
+/* Dark Theme Switch Adjustments */
+.dark-theme .navContainer .webix_switch {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+.dark-theme .navContainer .webix_button {
+    border-color: #a78bfa;
+    color: #a78bfa;
+}
+
+.dark-theme .navContainer .webix_button:hover {
+    background: #a78bfa;
+    color: #1a202c;
+}
+
+/* Right Alignment Helper */
+.rightAlign {
+    margin-right: 8px;
+}
+
+/* Reduce Spacing Helper */
+.reduceSpacing {
+    margin: 0 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navContainer {
+        padding: 0 8px;
+    }
+    
+    .navContainer .webix_button {
+        font-size: 12px;
+        height: 32px;
+        line-height: 28px;
+        min-width: 70px;
+        padding: 0 12px;
+    }
+    
+    .navContainer .webix_icon {
+        font-size: 18px;
+        padding: 6px;
+    }
+    
+    .navContainer .webix_switch {
+        height: 32px;
+        width: 80px;
+    }
+    
+    .navContainer .webix_switch .webix_switch_button {
+        width: 26px;
+        height: 26px;
+        margin: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navContainer .webix_button {
+        font-size: 11px;
+        height: 28px;
+        line-height: 24px;
+        min-width: 60px;
+        padding: 0 8px;
+    }
+    
+    .navContainer .webix_icon {
+        font-size: 16px;
+        padding: 4px;
+    }
+    
+    .navContainer .webix_switch {
+        height: 28px;
+        width: 70px;
+    }
+    
+    .navContainer .webix_switch .webix_switch_button {
+        width: 22px;
+        height: 22px;
+        margin: 1px;
+    }
+    
+    /* Hide text on very small screens, show only icons */
+    .navContainer .webix_button span:not(.webix_icon) {
+        display: none;
+    }
+}
+
+/* Animation for navbar appearance */
+.navContainer {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hover effects for better UX */
+.navContainer .webix_button,
+.navContainer .webix_icon,
+.navContainer .webix_switch {
+    position: relative;
+    overflow: hidden;
+}
+
+.navContainer .webix_button::before,
+.navContainer .webix_icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.navContainer .webix_button:active::before,
+.navContainer .webix_icon:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Focus states for accessibility */
+.navContainer .webix_button:focus,
+.navContainer .webix_icon:focus,
+.navContainer .webix_switch:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Loading state for buttons */
+.navContainer .webix_button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.navContainer .webix_button.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Status indicators */
+.navContainer .webix_icon.notification::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    background: #e53e3e;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Smooth transitions for theme switching */
+.navContainer * {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar for navbar if needed */
+.navContainer::-webkit-scrollbar {
+    height: 4px;
+}
+
+.navContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.navContainer::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 2px;
+}
+
+.navContainer::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
+}
