@@ -1,0 +1,69 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --test-btn-color: #039c2f;
+    --nav-text-color: #061e6a;
+    --login-des-color: #0a0a0a;
+}
+
+.dark-mode {
+    --bg-color: #222222;
+    --text-color: #ffffff;
+    --test-btn-color: #9c3b03;
+    --nav-text-color: #fcfcfc;
+    --login-des-color: #ffffff;
+   
+}
+
+.test-btn .webix_button {
+    background-color: var(--test-btn-color) !important;
+    color: #333;
+}
+
+.navContainer .webix_el_button .webix_button {
+    color: var(--nav-text-color) !important;
+}
+
+.webix_view {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.login-container .description {
+    color: var(--login-des-color) !important;
+}
+
+
+
+/* Formal green background for the form container */
+#signup_form .webix_view {
+  background-color: #31b444 !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.15);
+  padding: 20px;
+}
+
+/* Title label */
+.dark-label {
+  color: #2e7d32 !important;  /* Deep green */
+  font-size: 22px;
+  font-weight: bold;
+}
+/* Subtitle label */
+.dark-subtitle {
+  color: #388e3c !important;  /* Lighter green */
+  font-size: 18px;
+  margin-top: 10px;
+}       
+/* Input fields */
+.webix_input {      
+    background-color: #e8f5e9 !important; /* Light green */
+    border: 1px solid #c8e6c9 !important; /* Slightly darker green */
+    color: #1b5e20 !important; /* Dark green text */
+    border-radius: 4px;
+    padding: 10px;
+    }
+
+
+
+

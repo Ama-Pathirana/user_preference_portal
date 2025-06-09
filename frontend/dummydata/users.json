@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "fullName": "John Doe",
+    "email": "johndoe@example.com",
+    "phone": "0712345678",
+    "address": "123 Main Street, Colombo, Sri Lanka",
+    "marital_status": "Single",
+    "gender": "Male",
+    "dob": "1995-06-15",
+    "occupation": "Software Engineer",
+    "password": "password123"
+  },
+  {
+    "id": 2,
+    "fullName": "Su Fui",
+    "email": "s@example.com",
+    "phone": "0723456789",
+    "address": "456 Park Avenue, Kandy, Sri Lanka",
+    "marital_status": "Married",
+    "gender": "Female",
+    "dob": "1990-08-22",
+    "occupation": "Doctor",
+    "password": "123456"
+  },
+  {
+    "id": 3,
+    "fullName": "Michael Silva",
+    "email": "michael.silva@example.com",
+    "phone": "0774567890",
+    "address": "789 Ocean Road, Galle, Sri Lanka",
+    "marital_status": "Divorced",
+    "gender": "Male",
+    "dob": "1985-03-10",
+    "occupation": "Business Analyst",
+    "password": "mike2024"
+  },
+  {
+    "id": 4,
+    "fullName": "Emily Perera",
+    "email": "emily.perera@example.com",
+    "phone": "0765678901",
+    "address": "321 Lake View, Nuwara Eliya, Sri Lanka",
+    "marital_status": "Single",
+    "gender": "Female",
+    "dob": "1998-12-05",
+    "occupation": "Graphic Designer",
+    "password": "designqueen98"
+  },
+  {
+    "id": 5,
+    "fullName": "David Fernando",
+    "email": "david.fernando@example.com",
+    "phone": "0756789012",
+    "address": "567 Hilltop Lane, Matara, Sri Lanka",
+    "marital_status": "Married",
+    "gender": "Male",
+    "dob": "1992-07-30",
+    "occupation": "Civil Engineer",
+    "password": "davidbuilder"
+  }
+]
