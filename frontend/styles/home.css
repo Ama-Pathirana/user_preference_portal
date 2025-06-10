@@ -57,6 +57,8 @@
   font-size: 30px !important;
   color: white !important;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  
 }
 
 .image-slide3 .webix_template {
@@ -72,13 +74,14 @@
   text-align: left !important;
   font-weight: bold !important;
     font-size: 30px !important;
-  color: rgb(35, 19, 171) !important;
+  color: rgb(153, 73, 73) !important;
   height: 100%;
 }
 
 /* Backgrounds for each slide */
 .image-slide .webix_template {
   background-image: url("../../assets/summer.jpg") !important;
+  background-color: rgba(154, 116, 116, 0.1) !important;
 }
 .image-slide2 .webix_template {
   background-image: url("../../assets/mountain.jpg") !important;

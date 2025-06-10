@@ -1,148 +1,325 @@
+frontend/styles/styles.css
+
+/* --------------------------------------------------- */
+/* 1. Root CSS Variables (Default / Light Mode) */
+/* These define the base colors and properties for the application */
+/* --------------------------------------------------- */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --test-btn-color: #039c2f;
-    --nav-text-color: #061e6a;
-    --login-des-color: #0a0a0a;
+    /* Global Background & Text */
+    --color-bg-app: #ffffff;
+    --color-text-app: #000000;
 
-    --form-bg-color: #f0f0f0;
-    --form-border-color: #dcdcdc;
-    --form-text-color: #333333;
-    --form-input-bg-color: #ffffff;
-    --form-input-border-color: #cccccc;
-    --form-input-text-color: #000000;
-    --form-button-bg-color: #039c2f;
-    --form-button-text-color: #ffffff;
-    
+    /* Card/Panel Backgrounds & Borders (e.g., forms, settings sections) */
+    --color-bg-card: #f0f0f0; /* Lighter background for cards/forms */
+    --color-border-card: #dcdcdc; /* Border for cards/forms */
+    --color-text-card-header: #333333; /* Text color for headers within cards */
+
+    /* Accent / Primary Action Colors */
+    --color-accent-primary: #039c2f; /* Your green test button color */
+    --color-accent-hover: #027a26; /* Darkened green for hover */
+    --color-accent-active: #015c1c; /* Even darker green for active */
+    --color-accent-text: #ffffff; /* Text color on accent backgrounds */
+
+    /* Navigation Colors */
+    --color-nav-text: #061e6a; /* Deep blue for nav text */
+    --color-nav-hover: rgba(0, 0, 0, 0.1); /* Subtle hover for nav buttons */
+    --color-nav-active: rgba(0, 0, 0, 0.2); /* Subtle active for nav buttons */
+
+    /* Login/Description Text */
+    --color-login-description: #0a0a0a;
+
+    /* Form Input Colors */
+    --color-input-bg: #ffffff;
+    --color-input-border: #cccccc;
+    --color-input-text: #000000;
+    --color-input-placeholder: #999;
+    --color-input-focus-shadow: rgba(3, 156, 47, 0.3); /* Green accent with transparency */
+
+    /* Button Colors (General Webix Primary Button) */
+    --color-button-primary-bg: var(--color-accent-primary);
+    --color-button-primary-text: #ffffff;
+
+    /* Spacing & Borders */
+    --spacing-unit: 10px;
+    --border-radius: 4px;
 }
 
+/* --------------------------------------------------- */
+/* 2. Dark Mode Overrides */
+/* Applied when body has 'dark-mode' class */
+/* --------------------------------------------------- */
 .dark-mode {
-    --bg-color: #222222;
-    --text-color: #ffffff;
-    --test-btn-color: #9c3b03;
-    --nav-text-color: #fcfcfc;
-    --login-des-color: #ffffff;
-   
+    --color-bg-app: #222222;
+    --color-text-app: #ffffff;
+
+    --color-bg-card: #34495e;
+    --color-border-card: #556b7c;
+    --color-text-card-header: #ecf0f1;
+
+    --color-accent-primary: #9c3b03; /* Orange accent in dark mode */
+    --color-accent-hover: #7a2f02;
+    --color-accent-active: #5c2301;
+    --color-accent-text: #ffffff;
+
+    --color-nav-text: #fcfcfc;
+    --color-nav-hover: rgba(255, 255, 255, 0.1);
+    --color-nav-active: rgba(255, 255, 255, 0.2);
+
+    --color-login-description: #ffffff;
+
+    --color-input-bg: #3d536a;
+    --color-input-border: #556b7c;
+    --color-input-text: #ecf0f1;
+    --color-input-placeholder: #bbb;
+    --color-input-focus-shadow: rgba(156, 59, 3, 0.5); /* Orange accent with transparency */
 }
 
-.test-btn .webix_button {
-    background-color: var(--test-btn-color) !important;
-    color: #333;
+/* --------------------------------------------------- */
+/* 3. Base HTML & Webix Global Styles */
+/* --------------------------------------------------- */
+html, body, #webix_app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Control scrolling by Webix views, not body */
 }
 
-.navContainer .webix_el_button .webix_button {
-    color: var(--nav-text-color) !important;
+body {
+    font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* Example font stack */
+    background-color: var(--color-bg-app);
+    color: var(--color-text-app);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Base Webix View Background */
+/* This sets the background for the main Webix container, but sub-views like forms can override it. */
 .webix_view {
-    background-color: var(--bg-color) !important;
-    color: var(--text-color) !important;
+    background-color: var(--color-bg-app); /* Use app background as default view background */
+    color: var(--color-text-app);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* --------------------------------------------------- */
+/* 4. General Webix Component Styles */
+/* --------------------------------------------------- */
+
+/* Webix Buttons - General */
+.webix_button {
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    /* Ensure default buttons also have text color */
+    color: var(--color-text-app);
+}
+
+/* Default primary button style */
+.webix_primary {
+    background-color: var(--color-button-primary-bg) !important;
+    border-color: var(--color-button-primary-bg) !important;
+    color: var(--color-button-primary-text) !important;
+}
+.webix_primary:hover {
+    background-color: var(--color-accent-hover) !important;
+    border-color: var(--color-accent-hover) !important;
+}
+.webix_primary:active {
+    background-color: var(--color-accent-active) !important;
+    border-color: var(--color-accent-active) !important;
+}
+
+/* General Input Fields (text, number, etc.) */
+/* Apply this to the actual input element within Webix views */
+.webix_inp_text,
+.webix_inp_textarea,
+.webix_inp_numeric,
+.webix_inp_select { /* Added select for consistency if using it */
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    color: var(--color-input-text);
+    border-radius: var(--border-radius);
+    padding: 8px 10px; /* Standard padding for inputs */
+    font-size: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Placeholder text */
+.webix_inp_text::placeholder {
+    color: var(--color-input-placeholder);
+    opacity: 1; /* Override potential browser default */
+}
+
+/* Input Focus State */
+.webix_inp_text:focus,
+.webix_inp_textarea:focus,
+.webix_inp_numeric:focus,
+.webix_inp_select:focus {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
+    outline: none;
+}
+
+/* General Focus State for interactive elements (keyboard navigation) */
+.webix_focused {
+    box-shadow: 0 0 0 2px var(--color-accent-primary);
+    outline: none;
+}
+/* Ensure focused elements within a form also get focus styles */
+.webix_el_button.webix_focused,
+.webix_el_segmented.webix_focused .webix_selected,
+.webix_el_switch.webix_focused .webix_switch_button {
+    box-shadow: 0 0 0 3px var(--color-accent-primary);
+    outline: none;
+}
+
+
+/* --------------------------------------------------- */
+/* 5. Specific Component / Section Overrides */
+/* --------------------------------------------------- */
+
+/* Custom class for "test-btn" - overrides general button style */
+.test-btn .webix_button {
+    background-color: var(--color-accent-primary) !important; /* Uses the accent color */
+    color: #333 !important; /* Specific text color for this button */
+}
+
+/* Nav Container and its buttons */
+.navContainer {
+    background-color: var(--color-bg-card); /* Using card background for nav bar */
+    color: var(--color-nav-text);
+    border-bottom: 1px solid var(--color-border-card);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-unit);
+    font-family: Arial, sans-serif; /* Specific font for nav */
+}
+.navContainer .webix_el_button .webix_button {
+    color: var(--color-nav-text) !important;
+    font-weight: bold;
+    font-size: 16px;
+    padding: var(--spacing-unit) 15px;
+    border-radius: var(--border-radius);
+}
+.navContainer .webix_el_button .webix_button:hover {
+    background-color: var(--color-nav-hover);
+}
+.navContainer .webix_el_button .webix_button.active {
+    background-color: var(--color-nav-active);
+}
+.navContainer .webix_el_button .webix_button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-accent-primary); /* Use accent for nav focus */
+}
+.navContainer .webix_el_button .webix_button .webix_icon {
+    margin-right: 5px;
+    color: var(--color-nav-text);
+}
+.navContainer .webix_el_button .webix_button .webix_icon:hover {
+    color: var(--color-accent-primary); /* Nav icon hover */
+}
+
+/* Login Container Description */
 .login-container .description {
-    color: var(--login-des-color) !important;
+    color: var(--color-login-description) !important;
 }
 
-
-
-/* Formal green background for the form container */
-#signup_form .webix_view {
-  background-color: #31b444 !important;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.15);
-  padding: 20px;
+/* Formal green background for the signup form container */
+/* This overrides the general .webix_view background for this specific form */
+#signup_form.webix_view { /* Target the form itself, and ensure it's a webix_view */
+    background-color: #31b444 !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.15);
+    padding: 20px;
 }
 
-/* Title label */
+/* Title label for signup form */
 .dark-label {
-  color: #36aa3c !important;  /* Deep green */
-  font-size: 22px;
-  font-weight: bold;
+    color: #36aa3c !important; /* Deep green, specific to signup */
+    font-size: 22px;
+    font-weight: bold;
 }
-/* Subtitle label */
+/* Subtitle label for signup form */
 .dark-subtitle {
-  color: #388e3c !important;  /* Lighter green */
-  font-size: 18px;
-  margin-top: 10px;
-}       
-/* Input fields */
-.webix_input {      
+    color: #388e3c !important; /* Lighter green, specific to signup */
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Input fields specific to signup form (using .dark-input from JS) */
+#signup_form .dark-input .webix_inp_text { /* More specific selector to override general inputs */
     background-color: #e8f5e9 !important; /* Light green */
     border: 1px solid #c8e6c9 !important; /* Slightly darker green */
     color: #1b5e20 !important; /* Dark green text */
     border-radius: 4px;
     padding: 10px;
-    }
+}
+#signup_form .dark-input .webix_inp_text::placeholder {
+    color: #4CAF50 !important; /* A readable green for placeholders */
+}
+#signup_form .dark-input .webix_inp_text:focus {
+    border-color: #4CAF50 !important; /* Focus border matching signup theme */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4) !important; /* Green glow for focus */
+}
 
-
-
-
-
-
-
-    /* privacy styling */
+/* Privacy Settings - Keeping as is, assuming fixed colors */
 .privacy-settings-header-container {
     background-color: #f7f7f7;
     padding: 20px;
     border-bottom: 1px solid #eee;
 }
-
 .privacy-settings-header h2 {
     font-size: 24px;
     color: #333;
     margin-bottom: 5px;
 }
-
 .privacy-settings-header p {
     font-size: 14px;
     color: #666;
     margin: 0;
 }
-
 .settings-section-header-container {
     padding-bottom: 10px;
     margin-bottom: 15px;
     border-bottom: 1px solid #f0f0f0;
 }
-
 .settings-section-header h3 {
     font-size: 18px;
     color: #555;
     margin-bottom: 5px;
 }
-
 .settings-section-header p {
     font-size: 13px;
     color: #888;
     margin: 0;
 }
-
+/* General Webix Form (not specific to signup) */
 .webix_form {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    margin: 10px; 
+    background-color: var(--color-bg-card); /* Use card background variable */
+    border: 1px solid var(--color-border-card); /* Use card border variable */
+    border-radius: var(--border-radius);
+    margin: var(--spacing-unit);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+/* Dark mode specific for general forms */
+.dark-mode .webix_form {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .webix_control.webix_el_select,
 .webix_control.webix_el_checkbox {
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
-
 .webix_el_label {
     font-weight: 600;
-    color: #444;
+    color: var(--color-text-card-header);
 }
-
 .button-bar {
     padding: 15px;
-    background-color: #f7f7f7;
-    border-top: 1px solid #eee;
-    text-align: right; 
-
+    background-color: var(--color-bg-card); /* Consistent with card background */
+    border-top: 1px solid var(--color-border-card);
+    text-align: right;
 }
 
-
-
-
+/* Webix Elements Box (general spacing between form elements) */
+.webix_el_box {
+    margin-bottom: var(--spacing-unit) * 1.5; /* Add space between form elements */
+}

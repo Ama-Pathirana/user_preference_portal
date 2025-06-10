@@ -12,7 +12,7 @@ export const AccSettings = {
   rows: [
     // Header Row
     {
-      height: 60,
+      height: 50,
       cols: [
         {
           template: "<h2 class='section_header'>Account Settings</h2>",
@@ -43,7 +43,7 @@ export const AccSettings = {
                   {
                     view: "template",
                     template:
-                      "<h3 class='section_subheader'>Profile Info</h3>",
+                      "<h3 class='section_subheader'>Profile Section</h3>",
                     height: 40,
                     css: "subheader",
                   },
@@ -70,7 +70,7 @@ export const AccSettings = {
                               style="width:120px; height:120px; border-radius:50%; border:2px solid #ccc; object-fit:cover;">
                                </div>`;
                             },
-                            height: 140,
+                            height: 150,
                           },
                           {
                             cols: [
@@ -78,6 +78,7 @@ export const AccSettings = {
                                 view: "uploader",
                                 id: "profile_uploader",
                                 value: "Upload Photo",
+                                
                                 accept: "image/*",
                                 multiple: false,
                                 autosend: false,
@@ -172,10 +173,15 @@ export const AccSettings = {
                           {
                             view: "text",
                             name: "email",
-                            disabled: true,
+                            placeholder: "Enter your email",
+                            required: true,
+                            value: "",
+
                             height: 40,
                             bottomPadding: 15,
                           },
+
+
 
                           {
                             template:
@@ -262,7 +268,7 @@ export const AccSettings = {
                       // Column 1
                       {
                         gravity: 1,
-                        minWidth: 250,
+                        minWidth: 300,
                         rows: [
                           {
                             template: "<div class='form_label'>Address</div>",
@@ -289,7 +295,7 @@ export const AccSettings = {
                               { id: "female", value: "Female" },
                               { id: "other", value: "Other" },
                             ],
-                            height: 40,
+                            height: 30,
                             bottomPadding: 15,
                           },
 

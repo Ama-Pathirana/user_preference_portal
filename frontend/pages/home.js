@@ -98,7 +98,7 @@ export const HomePage = {
                 {
                     // Use a 'template' view to display multi-line text with formatting
                     header: "Contact Us",
-                    collapsed: true,
+                    
                   
                     // --- MODIFIED STYLES AND ALIGNMENT ---
 // Custom CSS class for further styling if needed
