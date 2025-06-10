@@ -28,11 +28,8 @@ export const SignupPage = {
                 },
                 {
                   view: "label",
-                  id: "signup_label",
                   label: "Sign Up",
-                  align: "center",
-                  css: "dark-label",
-
+                  align: "center"
                 },
               ]
             },
@@ -48,7 +45,6 @@ export const SignupPage = {
               name: "last_name",
               css: "dark-input",
               placeholder: "Last Name",
-              
               required: true
             },
             {
@@ -73,53 +69,18 @@ export const SignupPage = {
                 onTimedKeyPress: function () {
                   const value = this.getValue();
                   if (value.length < 6) {
-                    $$("password_error").setHTML("<span style='color: red;'>Password must contain a minimum of 6 characters and include both letters.</span>");
+                    $$("password_error").setHTML("<span style='color: red;'>Input at least 6 character password</span>");
                   } else {
                     $$("password_error").setHTML("");
                   }
                 }
               }
             },
-
-// confirm password field
-
-            {
-              view: "text",
-              name: "confirm_password",
-              type: "password",
-              id: "confirm_password_input",
-              placeholder: "Confirm Password",
-              required: true,
-              validate: function (value) {
-                const original = $$("password_input").getValue();
-                return value === original;
-              },
-              on: {
-                onTimedKeyPress: function () {
-                  const confirmValue = this.getValue();
-                  const originalValue = $$("password_input").getValue();
-
-                  if (confirmValue !== originalValue) {
-                    $$("confirm_password_error").setHTML("<span style='color: red;'>Passwords do not match.</span>");
-                  } else {
-                    $$("confirm_password_error").setHTML("");
-                  }
-                }
-              }
-            },
-            {
-              view: "template",
-              id: "confirm_password_error",
-              borderless: true,
-              height: 20,
-              template: ""
-            },
-            
             {
               view: "template",
               id: "password_error",
               borderless: true,
-              height: 40,
+              height: 20,
               template: ""
             },
             {
@@ -180,12 +141,7 @@ export const SignupPage = {
             "first_name": webix.rules.isNotEmpty,
             "last_name": webix.rules.isNotEmpty,
             "email": webix.rules.isEmail,
-            "password": function (value) {
-              return value.length >= 6 && /[A-Za-z]/.test(value);
-            },
-            "confirm_password": function (value) {
-              return value === $$("password_input").getValue();
-            }
+            "password": function (value) { return value.length >= 6; }
           }
         },
         { gravity: 1 }
