@@ -1,4 +1,5 @@
 const USERS_FILE = "/dummydata/users.json";
+// const USERS_FILE = "http://127.0.0.1:8000/users/";
 
 //Fetch users from the JSON file
 async function getUsers() {
@@ -14,12 +15,49 @@ async function getUsers() {
   }
 }
 
+// async function getUsers() {
+//   console.log("entered get user");
+//   try {
+//     const response = await fetch("http://127.0.0.1:8000/api/users/"); // Replace with your actual API endpoint
+//     console.log("response", response);
+//     if (!response.ok) throw new Error("Failed to fetch users");
+//     return await response.json();
+//   } catch (error) {
+//     console.error("Error loading users:", error);
+//     return [];
+//   }
+// }
+
+
 
 // Check if user already exists
 async function checkUserExists(email) {
   const users = await getUsers();
   return users.some(user => user.email === email);
 }
+
+// async function checkUserExists(email) {
+//   try {
+//     const response = await fetch('http://127.0.0.1:8000/signup/', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ email: email })
+//     });
+//     console.log("response",response)
+//     // Check if the response is ok (status in the range 200-299)
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+
+//     const data = await response.json();
+//     return data.exists; // true or false
+//   } catch (error) {
+//     console.error('Error checking user existence:', error);
+//     return false; // or handle as needed
+//   }
+// }
 
 function addUser(newUser) {
   const users = getUsers();
