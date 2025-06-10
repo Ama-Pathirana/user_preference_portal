@@ -34,7 +34,7 @@ export const SettingsPage = {
                         { id: "acc_settings", value: "Account", icon: "user" },
                         { id: "privacy", value: "Privacy", icon: "lock" },
                         { id: "notifications", value: "Notifications", icon: "bell" },
-                        { id: "themes", value: "Appearance", icon: "paint-brush" }
+                        { id: "themes", value: "Theme Setting", icon: "paint-brush" }
                     ],
                     // Template to render each list item with an icon
                     template: "<div class='mobile-menu-item'><span class='webix_icon fa-#icon#'></span> #value#</div>",

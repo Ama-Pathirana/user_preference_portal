@@ -28,11 +28,12 @@ export const Navbar = {
     {
       cols: [
         { 
-          view: "icon", 
-          icon: "mdi mdi-cog", 
+          view: "button", 
+          icon: "CustomIcon fas fa-user",
+          label: "Customize", 
           click: () => showView("settings"), 
           hidden: !isLogin,
-          width: 40,
+          width: 100,
           css: "rightAlign",
           hidden: !isLogin
         },

@@ -6,6 +6,9 @@ import { SettingsPage } from "./pages/settings.js";
 import { ForgotPasswordPage } from "./pages/forgotpassword.js";
 import { OtpVerificationPage } from "./pages/otpverify.js";
 
+
+
+
 webix.ready(function () {
   let isDarkMode = false;
 

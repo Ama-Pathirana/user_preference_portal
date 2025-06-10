@@ -4,6 +4,16 @@
     --test-btn-color: #039c2f;
     --nav-text-color: #061e6a;
     --login-des-color: #0a0a0a;
+
+    --form-bg-color: #f0f0f0;
+    --form-border-color: #dcdcdc;
+    --form-text-color: #333333;
+    --form-input-bg-color: #ffffff;
+    --form-input-border-color: #cccccc;
+    --form-input-text-color: #000000;
+    --form-button-bg-color: #039c2f;
+    --form-button-text-color: #ffffff;
+    
 }
 
 .dark-mode {
@@ -45,7 +55,7 @@
 
 /* Title label */
 .dark-label {
-  color: #2e7d32 !important;  /* Deep green */
+  color: #36aa3c !important;  /* Deep green */
   font-size: 22px;
   font-weight: bold;
 }
@@ -63,6 +73,75 @@
     border-radius: 4px;
     padding: 10px;
     }
+
+
+
+
+
+
+
+    /* privacy styling */
+.privacy-settings-header-container {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.privacy-settings-header h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.privacy-settings-header p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.settings-section-header-container {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.settings-section-header h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.settings-section-header p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+.webix_form {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin: 10px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.webix_control.webix_el_select,
+.webix_control.webix_el_checkbox {
+    margin-bottom: 15px; 
+}
+
+.webix_el_label {
+    font-weight: 600;
+    color: #444;
+}
+
+.button-bar {
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
+    text-align: right; 
+
+}
 
 
 

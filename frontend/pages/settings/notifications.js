@@ -1,676 +1,628 @@
 export const NotSettings = {
-  id: "notifications",
-  responsive: true,
-  adaptivity: true,
-  type: "clean",
+    id: "notifications",
+    responsive: true,
+    adaptivity: true,
+    type: "clean",
 
-  defaultValues: {
-    email_notifications: true,
-    sms_notifications: false,
-    push_notifications: true,
-    newsletter_subscriptions: false,
-    notification_sound: "default",
-    sound_mode: "keep",
-    text_preview: true,
-    media_preview: true,
-    mute_notifications: false,
-    message_tone: "Default",
-    group_tone: "Default"
-  },
-
-  rows: [
-    {
-      template:
-        "<h2 tabindex='0' class='settings-title'>Notification Settings</h2>",
-      autoheight: true,
-      css: "settings-title",
+    // Centralized default values for easier management and resetting
+    defaultValues: {
+        email_notifications: true,
+        sms_notifications: false,
+        push_notifications: true,
+        newsletter_subscriptions: false,
+        notification_sound: "default",
+        sound_mode: "keep",
+        text_preview: true,
+        media_preview: true,
+        mute_notifications: false,
+        message_tone: "Default",
+        group_tone: "Default",
+        custom_message_tone_path: "", // New default for custom tone path
+        custom_group_tone_path: "",   // New default for custom tone path
     },
-    {
-      view: "form",
-      id: "notificationForm",
-      scroll: true,
-      elementsConfig: {
-        labelPosition: "left",
-      },
-      elements: [
-        {
-          view: "fieldset",
-          label: "Alert Preferences",
-          body: {
-            paddingY: 10,
-            rows: [
-              {
-                view: "checkbox",
-                label: "Email",
-                name: "email_notifications",
-                labelWidth: 150,
-                tooltip: "Receive notifications via email",
-                tabFocus: true,
-              },
-              {
-                view: "checkbox",
-                label: "SMS",
-                name: "sms_notifications",
-                labelWidth: 150,
-                tooltip: "Receive notifications via text message",
-                tabFocus: true,
-              },
-              {
-                view: "checkbox",
-                label: "Push Notifications",
-                name: "push_notifications",
-                labelWidth: 150,
-                tooltip: "Receive push notifications on your device",
-                tabFocus: true,
-              },
-              {
-                view: "checkbox",
-                label: "Newsletter",
-                name: "newsletter_subscriptions",
-                labelWidth: 150,
-                tooltip: "Receive newsletter emails",
-                tabFocus: true,
-              },
-            ],
-          },
-        },
 
+    rows: [
         {
-          view: "fieldset",
-          label: "Sound Settings",
-          body: {
-            paddingY: 10,
-            rows: [
-              {
-                view: "combo",
-                label: "Notification Sound",
-                name: "notification_sound",
-                labelWidth: 150,
-                width: 300,
-                options: [
-                  { id: "default", value: "Default" },
-                  { id: "chime", value: "Chime" },
-                  { id: "beep", value: "Beep" },
-                  { id: "silent", value: "Silent" },
-                ],
-                tabFocus: true,
-                tooltip: "Choose your notification sound",
-              },
-              {
-                view: "segmented",
-                label: "Sound Mode",
-                name: "sound_mode",
-                labelWidth: 150,
-                options: [
-                  { id: "mute", value: "Mute" , width: 100},
-                  { id: "keep", value: "Keep Sound", width: 100 },
-                ],
-                tabFocus: true,
-                tooltip: "Configure sound mode",
-              },
-            ],
-          },
+            // Enhanced main title with a descriptive subtitle
+            template: `
+                <div class='settings-header-container'>
+                    <h2 tabindex='0' class='settings-title'>Notification Settings</h2>
+                    <p class='settings-description'>Customize how you receive alerts and manage notification behaviors across the application.</p>
+                </div>
+            `,
+            autoheight: true,
+            css: "settings-header-wrapper", // A wrapper class for specific styling
         },
-
         {
-          view: "fieldset",
-          label: "Preview Settings",
-          body: {
-            paddingY: 10,
-            rows: [
-              {
-                view: "switch",
-                label: "Text Preview",
-                name: "text_preview",
-                labelWidth: 150,
-                onLabel: "On",
-                offLabel: "Off",
-                tabFocus: true,
-                tooltip: "Show text previews in notifications",
-              },
-              {
-                view: "switch",
-                label: "Media Preview",
-                name: "media_preview",
-                labelWidth: 150,
-                onLabel: "On",
-                offLabel: "Off",
-                tabFocus: true,
-                tooltip: "Show media previews in notifications",
-              },
-              {
-                view: "switch",
-                label: "Mute All Notifications",
-                name: "mute_notifications",
-                labelWidth: 150,
-                onLabel: "On",
-                offLabel: "Off",
-                tabFocus: true,
-                tooltip: "Temporarily silence all notifications",
-              },
-            ],
-          },
-        },
-
-        {
-          view: "fieldset",
-          label: "Notification Tones",
-          body: {
-            paddingY: 10,
-            rows: [
-              {
-                id: "message_tone_row",
-                height: 40,
-                cols: [
-                  {
-                    view: "label",
-                    label: "Messages",
-                    width: 100,
-                    css: "tone-label",
-                  },
-                  {
-                    view: "button",
-                    type: "icon",
-                    icon: "mdi mdi-play",
-                    width: 40,
-                    click: "playMessageTone",
-                    tabFocus: true,
-                    tooltip: "Play message tone sample",
-                    hotkey: "alt+1",
-                    css: "play-button",
-                  },
-                  {
-                    view: "richselect",
-                    name: "message_tone",
-                    options: ["Default", "Chime", "Beep", "Custom"],
-                    value: "Default",
-                    tabFocus: true,
-                    css: "tone-select",
-                  },
-                ],
-              },
-              {
-                id: "group_tone_row",
-                height: 40,
-                cols: [
-                  {
-                    view: "label",
-                    label: "Groups",
-                    width: 100,
-                    css: "tone-label",
-                  },
-                  {
-                    view: "button",
-                    type: "icon",
-                    icon: "mdi mdi-play",
-                    width: 40,
-                    click: "playGroupTone",
-                    tabFocus: true,
-                    tooltip: "Play group tone sample",
-                    hotkey: "alt+2",
-                    css: "play-button",
-                  },
-                  {
-                    view: "richselect",
-                    name: "group_tone",
-                    options: ["Default", "Chime", "Beep", "Custom"],
-                    value: "Default",
-                    tabFocus: true,
-                    css: "tone-select",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-
-        {
-          margin: 20,
-          cols: [
-            {},
-            {
-              view: "button",
-              id: "reset_button",
-              value: "Reset to Default",
-              minWidth:150,
-              maxWidth:250,
-              css: "reset-button",
-              tabFocus: true,
-              tooltip: "Reset all settings to default values",
-              hotkey: "alt+r",
-              click: function () {
-                const form = $$("notificationForm");
-                if (form) {
-                  form.clear();
-                  form.setValues({
-                    notification_sound: "default",
-                    sound_mode: "keep",
-                    message_tone: "Default",
-                    group_tone: "Default",
-                  
-                  });
-                  webix.message("Settings reset to default");
-                }
-              },
+            view: "form",
+            id: "notificationForm",
+            scroll: true,
+            elementsConfig: {
+                labelPosition: "left", // Default label position
+                labelWidth: 180, // Slightly increased label width for better readability
+                // Add some default padding to controls
+                paddingY: 8,
             },
-            
-            {
-              view: "button",
-              id: "save_button",
-              value: "Save Changes",
-              minWidth:150,
-              maxWidth:250,
-              css: "webix_primary save-button",
-              tabFocus: true,
-              tooltip: "Save your notification settings",
-              hotkey: "alt+s",
-              click: function () {
-                const form = $$("notificationForm");
-                if (form) {
-                  const values = form.getValues();
-                  console.log("Saving settings:", values);
-                  webix.message({
-                    type: "success",
-                    text: "Notification settings updated!",
-                  });
-                }
-              },
-            },
-          ],
+            elements: [
+                {
+                    // Fieldset for Alert Preferences with an added description
+                    view: "fieldset",
+                    label: "Alert Preferences",
+                    body: {
+                        paddingY: 10,
+                        rows: [
+                            {
+                                template: `<div class='fieldset-intro'>Choose your preferred channels for receiving updates and important information.</div>`,
+                                autoheight: true,
+                                borderless: true,
+                                css: "fieldset-intro-text",
+                            },
+                            {
+                                view: "checkbox",
+                                label: "Email Notifications", // More descriptive label
+                                name: "email_notifications",
+                                tooltip: "Receive notifications and updates via email.",
+                                tabFocus: true,
+                            },
+                            {
+                                view: "checkbox",
+                                label: "SMS Notifications", // More descriptive label
+                                name: "sms_notifications",
+                                tooltip: "Receive urgent alerts and essential updates via text message. (Carrier rates may apply)", // Added disclaimer
+                                tabFocus: true,
+                            },
+                            {
+                                view: "checkbox",
+                                label: "Push Notifications", // More descriptive label
+                                name: "push_notifications",
+                                tooltip: "Get instant notifications on your device when you're active in the app.",
+                                tabFocus: true,
+                            },
+                            {
+                                view: "checkbox",
+                                label: "Newsletter Subscriptions", // More descriptive label
+                                name: "newsletter_subscriptions",
+                                tooltip: "Subscribe to our periodic newsletters for news and promotions.",
+                                tabFocus: true,
+                            },
+                        ],
+                    },
+                },
+
+                {
+                    // Fieldset for Sound Settings with an added description
+                    view: "fieldset",
+                    label: "Sound Settings",
+                    body: {
+                        paddingY: 10,
+                        rows: [
+                            {
+                                template: `<div class='fieldset-intro'>Configure the general sound behaviors for incoming notifications.</div>`,
+                                autoheight: true,
+                                borderless: true,
+                                css: "fieldset-intro-text",
+                            },
+                            {
+                                view: "combo",
+                                label: "Default Notification Sound", // More specific label
+                                name: "notification_sound",
+                                options: [
+                                    { id: "default", value: "Default (App Chime)" }, // More descriptive default
+                                    { id: "chime", value: "Chime" },
+                                    { id: "beep", value: "Beep" },
+                                    { id: "silent", value: "Silent" },
+                                ],
+                                tooltip: "Select the primary sound played for most notifications.",
+                                tabFocus: true,
+                            },
+                            {
+                                view: "segmented",
+                                label: "Notification Sound Mode", // More descriptive label
+                                name: "sound_mode",
+                                options: [
+                                    { id: "mute", value: "Mute All Sounds", width: 150 }, // Wider segments
+                                    { id: "keep", value: "Keep Sounds On", width: 150 },
+                                ],
+                                tooltip: "Choose whether to play sounds for all notifications or mute them globally.",
+                                tabFocus: true,
+                            },
+                        ],
+                    },
+                },
+
+                {
+                    // Fieldset for Preview Settings with an added description
+                    view: "fieldset",
+                    label: "Preview Settings",
+                    body: {
+                        paddingY: 10,
+                        rows: [
+                            {
+                                template: `<div class='fieldset-intro'>Control what content is displayed in notification previews.</div>`,
+                                autoheight: true,
+                                borderless: true,
+                                css: "fieldset-intro-text",
+                            },
+                            {
+                                view: "switch",
+                                label: "Show Text Preview", // More specific label
+                                name: "text_preview",
+                                onLabel: "On",
+                                offLabel: "Off",
+                                tabFocus: true,
+                                tooltip: "When enabled, notification previews will show the message text.",
+                            },
+                            {
+                                view: "switch",
+                                label: "Show Media Preview", // More specific label
+                                name: "media_preview",
+                                onLabel: "On",
+                                offLabel: "Off",
+                                tabFocus: true,
+                                tooltip: "When enabled, notification previews will show image or video thumbnails.",
+                            },
+                            {
+                                view: "switch",
+                                label: "Mute All Notifications", // This covers all types including sounds/vibrations
+                                name: "mute_notifications",
+                                onLabel: "Muted", // Changed labels for clarity
+                                offLabel: "Active",
+                                tabFocus: true,
+                                tooltip: "Temporarily silence all notifications. This will override individual sound and tone settings.",
+                            },
+                        ],
+                    },
+                },
+
+                {
+                    // Fieldset for Custom Notification Tones with an added description
+                    view: "fieldset",
+                    label: "Custom Notification Tones", // Renamed for clarity
+                    body: {
+                        paddingY: 10,
+                        rows: [
+                            {
+                                template: `<div class='fieldset-intro'>Personalize the sound for specific types of messages and groups.</div>`,
+                                autoheight: true,
+                                borderless: true,
+                                css: "fieldset-intro-text",
+                            },
+                            {
+                                id: "message_tone_row",
+                                height: 40,
+                                cols: [
+                                    { view: "label", label: "Messages", width: 100, css: "tone-label" },
+                                    {
+                                        view: "button",
+                                        type: "icon",
+                                        icon: "mdi mdi-play",
+                                        width: 40,
+                                        click: "playMessageTone",
+                                        tabFocus: true,
+                                        tooltip: "Play current message tone sample",
+                                        hotkey: "alt+1",
+                                        css: "play-button",
+                                    },
+                                    {
+                                        view: "richselect",
+                                        name: "message_tone",
+                                        options: ["Default", "Chime", "Beep", "Custom"],
+                                        value: "Default",
+                                        tabFocus: true,
+                                        css: "tone-select",
+                                        tooltip: "Select a tone for private messages.",
+                                    },
+                                ],
+                            },
+                            {
+                                // Conditional text input for custom message tone path
+                                view: "text",
+                                name: "custom_message_tone_path",
+                                label: "Custom Tone URL",
+                                labelWidth: 150,
+                                hidden: true, // Hidden by default
+                                placeholder: "e.g., /sounds/my-custom-message.mp3",
+                                tooltip: "Enter the direct URL or path to your custom tone file (e.g., .mp3, .ogg).",
+                                // Show/hide logic based on 'message_tone' selection
+                                bind: "{obj.message_tone}",
+                                on: {
+                                    onBindApply: function (value) {
+                                        if (value === "Custom") {
+                                            this.show();
+                                        } else {
+                                            this.hide();
+                                        }
+                                    },
+                                },
+                            },
+                            {
+                                id: "group_tone_row",
+                                height: 40,
+                                cols: [
+                                    { view: "label", label: "Groups", width: 100, css: "tone-label" },
+                                    {
+                                        view: "button",
+                                        type: "icon",
+                                        icon: "mdi mdi-play",
+                                        width: 40,
+                                        click: "playGroupTone",
+                                        tabFocus: true,
+                                        tooltip: "Play current group tone sample",
+                                        hotkey: "alt+2",
+                                        css: "play-button",
+                                    },
+                                    {
+                                        view: "richselect",
+                                        name: "group_tone",
+                                        options: ["Default", "Chime", "Beep", "Custom"],
+                                        value: "Default",
+                                        tabFocus: true,
+                                        css: "tone-select",
+                                        tooltip: "Select a tone for group chat notifications.",
+                                    },
+                                ],
+                            },
+                            {
+                                // Conditional text input for custom group tone path
+                                view: "text",
+                                name: "custom_group_tone_path",
+                                label: "Custom Tone URL",
+                                labelWidth: 150,
+                                hidden: true, // Hidden by default
+                                placeholder: "e.g., /sounds/my-custom-group.mp3",
+                                tooltip: "Enter the direct URL or path to your custom tone file (e.g., .mp3, .ogg).",
+                                // Show/hide logic based on 'group_tone' selection
+                                bind: "{obj.group_tone}",
+                                on: {
+                                    onBindApply: function (value) {
+                                        if (value === "Custom") {
+                                            this.show();
+                                        } else {
+                                            this.hide();
+                                        }
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                },
+
+                {
+                    // Action buttons row with an ID for responsive adjustments
+                    margin: 20,
+                    id: "settings_action_buttons", // Added ID for easier reference in responsive functions
+                    cols: [
+                        {}, // Spacer
+                        {
+                            view: "button",
+                            id: "reset_button",
+                            value: "Reset to Default",
+                            minWidth: 150,
+                            maxWidth: 250,
+                            css: "webix_danger reset-button", // Changed to danger color for emphasis on reset
+                            tabFocus: true,
+                            tooltip: "Revert all settings to their initial default values.",
+                            hotkey: "alt+r",
+                            click: function () {
+                                webix.confirm({
+                                    title: "Reset Notification Settings",
+                                    text: "Are you sure you want to reset all notification settings to their default values? This action cannot be undone.",
+                                    callback: function (result) {
+                                        if (result) {
+                                            const form = $$("notificationForm");
+                                            if (form) {
+                                                // Use the defaultValues object directly for a full reset
+                                                form.setValues(NotSettings.defaultValues, true); // true for partial update (merges new values)
+                                                webix.message({
+                                                    type: "success",
+                                                    text: "Notification settings reset to default!",
+                                                });
+                                            }
+                                        }
+                                    },
+                                });
+                            },
+                        },
+                        { width: 15 }, // Increased space between buttons
+                        {
+                            view: "button",
+                            id: "save_button",
+                            value: "Save Changes",
+                            minWidth: 150,
+                            maxWidth: 250,
+                            css: "webix_primary save-button",
+                            tabFocus: true,
+                            tooltip: "Save your current notification settings.",
+                            hotkey: "alt+s",
+                            click: function () {
+                                webix.confirm({
+                                    title: "Save Notification Settings",
+                                    text: "Are you sure you want to save these notification settings?",
+                                    callback: function (result) {
+                                        if (result) {
+                                            const form = $$("notificationForm");
+                                            if (form) {
+                                                const values = form.getValues();
+                                                console.log("Saving settings:", values);
+                                                // Here, you would typically send `values` to your backend API
+                                                webix.message({
+                                                    type: "success",
+                                                    text: "Notification settings updated successfully!",
+                                                });
+                                            }
+                                        }
+                                    },
+                                });
+                            },
+                        },
+                    ],
+                },
+            ],
         },
-      ],
+    ],
+
+    on: {
+        onViewResize: function () {
+            this.adjust(); // Adjust the scrollview itself
+            applyResponsiveLayout(); // Apply custom responsive logic
+        },
+
+        onAfterRender: function () {
+            // Initialize responsiveness only once after the view is rendered
+            initializeResponsiveness();
+
+            // Set up keyboard navigation (already good, ensuring focus management)
+            if (webix.UIManager) {
+                webix.UIManager.addHotKey("tab", function (view) {
+                    const next = webix.UIManager.getNext(view);
+                    if (next) webix.UIManager.setFocus(next);
+                });
+
+                webix.UIManager.addHotKey("shift+tab", function (view) {
+                    const prev = webix.UIManager.getPrev(view);
+                    if (prev) webix.UIManager.setFocus(prev);
+                });
+
+                webix.UIManager.addHotKey("enter", function (view) {
+                    if (view && view.config && view.config.view === "button") {
+                        view.callEvent("onItemClick", []);
+                    } else if (
+                        view &&
+                        view.config &&
+                        (view.config.view === "checkbox" || view.config.view === "switch" || view.config.view === "segmented")
+                    ) {
+                        view.setValue(!view.getValue()); // Toggle value for checkbox/switch/segmented
+                    } else if (view && view.config && (view.config.view === "combo" || view.config.view === "richselect")) {
+                        // For selects, opening the options
+                        view.getPopup().show();
+                    }
+                });
+
+                // Focus the first element for keyboard navigation initially
+                const form = $$("notificationForm");
+                if (form && form.getChildViews().length > 0) {
+                    // Try to focus the first control within the first fieldset
+                    const firstFieldsetBody = form.elements[0].body;
+                    if (firstFieldsetBody && firstFieldsetBody.rows && firstFieldsetBody.rows.length > 0) {
+                        webix.UIManager.setFocus(firstFieldsetBody.rows[1]); // Skip the intro template
+                    } else {
+                        webix.UIManager.setFocus(form.getChildViews()[0]);
+                    }
+                }
+            }
+        },
     },
-  ],
-
-  on: {
-    onViewResize: function () {
-      // Adjust layout for different screen sizes
-      this.adjust();
-
-      // Apply responsive adjustments
-      applyResponsiveLayout();
-    },
-
-    onAfterRender: function () {
-      // Initialize responsiveness
-      initializeResponsiveness();
-
-      // Set up keyboard navigation
-      if (webix.UIManager) {
-        webix.UIManager.addHotKey("tab", function (view) {
-          const next = webix.UIManager.getNext(view);
-          if (next) webix.UIManager.setFocus(next);
-        });
-
-        webix.UIManager.addHotKey("shift+tab", function (view) {
-          const prev = webix.UIManager.getPrev(view);
-          if (prev) webix.UIManager.setFocus(prev);
-        });
-
-        webix.UIManager.addHotKey("enter", function (view) {
-          if (view && view.config && view.config.view === "button") {
-            view.callEvent("onItemClick", []);
-          } else if (
-            view &&
-            view.config &&
-            (view.config.view === "checkbox" || view.config.view === "switch")
-          ) {
-            view.setValue(!view.getValue());
-          }
-        });
-
-        // Focus the first element for keyboard navigation
-        const form = $$("notificationForm");
-        if (form && form.getChildViews().length > 0) {
-          webix.UIManager.setFocus(form.getChildViews()[0]);
-        }
-      }
-
-      // Sound playback functions
-      window.playMessageTone = function () {
-        console.log("Playing message tone");
-        const form = $$("notificationForm");
-        if (!form) return;
-
-        const tone = form.getValues().message_tone;
-        webix.message(`Playing ${tone} message tone`);
-
-        try {
-          const audio = new Audio(`/sounds/${tone.toLowerCase()}.mp3`);
-          audio.play().catch((e) => console.error("Error playing sound:", e));
-        } catch (e) {
-          console.error("Error with audio playback:", e);
-        }
-      };
-
-      window.playGroupTone = function () {
-        console.log("Playing group tone");
-        const form = $$("notificationForm");
-        if (!form) return;
-
-        const tone = form.getValues().group_tone;
-        webix.message(`Playing ${tone} group tone`);
-
-        try {
-          const audio = new Audio(`/sounds/${tone.toLowerCase()}.mp3`);
-          audio.play().catch((e) => console.error("Error playing sound:", e));
-        } catch (e) {
-          console.error("Error with audio playback:", e);
-        }
-      };
-    },
-  },
 };
 
-// Function to initialize responsiveness
+// --- Responsive Functions (Enhanced for robustness) ---
+
+// Store original desktop layouts to revert to
+const desktopMessageToneCols = [
+    { view: "label", label: "Messages", width: 100, css: "tone-label" },
+    { view: "button", type: "icon", icon: "mdi mdi-play", width: 40, click: "playMessageTone", tabFocus: true, tooltip: "Play current message tone sample", hotkey: "alt+1", css: "play-button" },
+    { view: "richselect", name: "message_tone", options: ["Default", "Chime", "Beep", "Custom"], value: "Default", tabFocus: true, css: "tone-select", tooltip: "Select a tone for private messages." },
+];
+const desktopGroupToneCols = [
+    { view: "label", label: "Groups", width: 100, css: "tone-label" },
+    { view: "button", type: "icon", icon: "mdi mdi-play", width: 40, click: "playGroupTone", tabFocus: true, tooltip: "Play current group tone sample", hotkey: "alt+2", css: "play-button" },
+    { view: "richselect", name: "group_tone", options: ["Default", "Chime", "Beep", "Custom"], value: "Default", tabFocus: true, css: "tone-select", tooltip: "Select a tone for group chat notifications." },
+];
+const desktopButtonCols = [
+    {}, // Spacer
+    { view: "button", id: "reset_button", value: "Reset to Default", minWidth: 150, maxWidth: 250, css: "webix_danger reset-button", tabFocus: true, tooltip: "Revert all settings to their initial default values.", hotkey: "alt+r" },
+    { width: 15 },
+    { view: "button", id: "save_button", value: "Save Changes", minWidth: 150, maxWidth: 250, css: "webix_primary save-button", tabFocus: true, tooltip: "Save your current notification settings.", hotkey: "alt+s" },
+];
+
+// Function to initialize responsiveness by adding resize listener and applying initial layout
 function initializeResponsiveness() {
-  // Add window resize event listener
-  window.addEventListener("resize", applyResponsiveLayout);
-
-  // Initial call to set the correct layout
-  applyResponsiveLayout();
-
-  // Add custom CSS
-  addResponsiveStyles();
+    window.addEventListener("resize", applyResponsiveLayout);
+    applyResponsiveLayout(); // Initial call
+    addResponsiveStyles(); // Add custom CSS
 }
 
 // Function to apply responsive layout based on screen width
 function applyResponsiveLayout() {
-  const width = window.innerWidth;
+    const width = window.innerWidth;
+    const form = $$("notificationForm");
+    const messageToneRow = $$("message_tone_row");
+    const groupToneRow = $$("group_tone_row");
+    const actionButtonsRow = $$("settings_action_buttons"); // Reference the new ID
 
-  // References to elements that need to be adjusted
-  const messageToneRow = $$("message_tone_row");
-  const groupToneRow = $$("group_tone_row");
-  const saveButton = $$("save_button");
-  const resetButton = $$("reset_button");
-  const form = $$("notificationForm");
+    // Helper to define new elements config
+    const updateElementsConfig = (labelPosition, labelWidth) => {
+        if (form) {
+            form.define("elementsConfig", { labelPosition, labelWidth });
+            form.refresh();
+        }
+    };
 
-  if (width <= 767) {
-    // Mobile view adjustments
-    console.log("Applying mobile layout");
+    if (width <= 767) {
+        // Mobile view adjustments
+        console.log("Applying mobile layout");
+        updateElementsConfig("top", 0); // Labels above controls
 
-    // Convert tone rows to vertical layout
-    if (messageToneRow) {
-      messageToneRow.define("cols", []);
-      messageToneRow.define("rows", [
-        { view: "label", label: "Messages", height: 30, css: "tone-label" },
-        {
-          cols: [
-            {
-              view: "button",
-              type: "icon",
-              icon: "mdi mdi-play",
-              width: 40,
-              click: "playMessageTone",
-              css: "play-button",
-            },
-            {
-              view: "richselect",
-              name: "message_tone",
-              options: ["Default", "Chime", "Beep", "Custom"],
-              value: "Default",
-              css: "tone-select",
-            },
-          ],
-        },
-      ]);
-      messageToneRow.define("height", 80);
-      messageToneRow.refresh();
+        // Convert tone rows to vertical layout only if not already vertical
+        if (messageToneRow && messageToneRow.config.cols && messageToneRow.config.cols.length > 0) {
+            messageToneRow.define("cols", []);
+            messageToneRow.define("rows", [
+                { view: "label", label: "Messages", height: 30, css: "tone-label" },
+                {
+                    cols: [
+                        { view: "button", type: "icon", icon: "mdi mdi-play", width: 40, click: "playMessageTone", css: "play-button" },
+                        { view: "richselect", name: "message_tone", options: ["Default", "Chime", "Beep", "Custom"], value: "Default", css: "tone-select" },
+                    ],
+                },
+                { view: "text", name: "custom_message_tone_path", label: "Custom Tone URL", labelWidth: 150, hidden: true, placeholder: "e.g., /sounds/my-custom-message.mp3", bind: "{obj.message_tone}", on: { onBindApply: function(val) { if (val === "Custom") this.show(); else this.hide(); } } },
+            ]);
+            messageToneRow.define("height", 110); // Adjusted height
+            messageToneRow.refresh();
+        }
+
+        if (groupToneRow && groupToneRow.config.cols && groupToneRow.config.cols.length > 0) {
+            groupToneRow.define("cols", []);
+            groupToneRow.define("rows", [
+                { view: "label", label: "Groups", height: 30, css: "tone-label" },
+                {
+                    cols: [
+                        { view: "button", type: "icon", icon: "mdi mdi-play", width: 40, click: "playGroupTone", css: "play-button" },
+                        { view: "richselect", name: "group_tone", options: ["Default", "Chime", "Beep", "Custom"], value: "Default", css: "tone-select" },
+                    ],
+                },
+                { view: "text", name: "custom_group_tone_path", label: "Custom Tone URL", labelWidth: 150, hidden: true, placeholder: "e.g., /sounds/my-custom-group.mp3", bind: "{obj.group_tone}", on: { onBindApply: function(val) { if (val === "Custom") this.show(); else this.hide(); } } },
+            ]);
+            groupToneRow.define("height", 110); // Adjusted height
+            groupToneRow.refresh();
+        }
+
+        // Stack buttons vertically only if not already vertical
+        if (actionButtonsRow && actionButtonsRow.config.cols && actionButtonsRow.config.cols.length > 0) {
+            actionButtonsRow.define("cols", []);
+            actionButtonsRow.define("rows", [
+                {}, // Spacer
+                {
+                    view: "button", id: "reset_button", value: "Reset to Default",
+                    css: "webix_danger reset-button", tabFocus: true, tooltip: "Revert all settings to their initial default values.", hotkey: "alt+r", click: NotSettings.rows[1].elements[4].cols[1].click // Reference click handler
+                },
+                { height: 10 },
+                {
+                    view: "button", id: "save_button", value: "Save Changes",
+                    css: "webix_primary save-button", tabFocus: true, tooltip: "Save your current notification settings.", hotkey: "alt+s", click: NotSettings.rows[1].elements[4].cols[3].click // Reference click handler
+                },
+            ]);
+            actionButtonsRow.refresh();
+        }
+
+    } else if (width <= 991) {
+        // Tablet view adjustments
+        console.log("Applying tablet layout");
+        updateElementsConfig("left", 140); // Labels on left, smaller width
+
+        // Reset to horizontal layout if currently vertical
+        resetToneRows();
+        resetButtonLayout();
+
+    } else {
+        // Desktop view adjustments
+        console.log("Applying desktop layout");
+        updateElementsConfig("left", 180); // Original label width
+
+        // Ensure horizontal layout
+        resetToneRows();
+        resetButtonLayout();
     }
 
-    if (groupToneRow) {
-      groupToneRow.define("cols", []);
-      groupToneRow.define("rows", [
-        { view: "label", label: "Groups", height: 30, css: "tone-label" },
-        {
-          cols: [
-            {
-              view: "button",
-              type: "icon",
-              icon: "mdi mdi-play",
-              width: 40,
-              click: "playGroupTone",
-              css: "play-button",
-            },
-            {
-              view: "richselect",
-              name: "group_tone",
-              options: ["Default", "Chime", "Beep", "Custom"],
-              value: "Default",
-              css: "tone-select",
-            },
-          ],
-        },
-      ]);
-      groupToneRow.define("height", 80);
-      groupToneRow.refresh();
-    }
-
-    // Stack buttons vertically
-    if (resetButton && saveButton) {
-      resetButton.getParentView().define("cols", []);
-      resetButton.getParentView().define("rows", [
-        {},
-        {
-          view: "button",
-          id: "reset_button",
-          value: "Reset to Default",
-          css: "reset-button",
-        },
-        { height: 10 },
-        {
-          view: "button",
-          id: "save_button",
-          value: "Save Changes",
-          css: "webix_primary save-button",
-        },
-      ]);
-      resetButton.getParentView().refresh();
-    }
-
-    // Adjust form label position
-    if (form) {
-      form.define("elementsConfig", { labelPosition: "top" });
-      form.refresh();
-    }
-  } else if (width <= 991) {
-    // Tablet view adjustments
-    console.log("Applying tablet layout");
-
-    // Reset to horizontal layout with smaller labels
-    resetToneRows();
-    resetButtonLayout();
-
-    // Adjust form label position
-    if (form) {
-      form.define("elementsConfig", { labelPosition: "left", labelWidth: 120 });
-      form.refresh();
-    }
-  } else {
-    // Desktop view adjustments
-    console.log("Applying desktop layout");
-
-    // Reset to normal layout
-    resetToneRows();
-    resetButtonLayout();
-
-    // Adjust form label position
-    if (form) {
-      form.define("elementsConfig", { labelPosition: "left", labelWidth: 150 });
-      form.refresh();
-    }
-  }
-
-  // Force UI to adjust
-  if (webix && webix.ui && webix.ui.resize) {
-    webix.ui.resize();
-  }
+    webix.ui.resize(); // Force UI adjustment
 }
 
-// Function to reset tone rows to horizontal layout
+// Function to reset tone rows to original horizontal layout
 function resetToneRows() {
-  const messageToneRow = $$("message_tone_row");
-  const groupToneRow = $$("group_tone_row");
+    const messageToneRow = $$("message_tone_row");
+    const groupToneRow = $$("group_tone_row");
 
-  if (messageToneRow) {
-    messageToneRow.define("rows", []);
-    messageToneRow.define("cols", [
-      { view: "label", label: "Messages", width: 100, css: "tone-label" },
-      {
-        view: "button",
-        type: "icon",
-        icon: "mdi mdi-play",
-        width: 40,
-        click: "playMessageTone",
-        css: "play-button",
-      },
-      {
-        view: "richselect",
-        name: "message_tone",
-        options: ["Default", "Chime", "Beep", "Custom"],
-        value: "Default",
-        css: "tone-select",
-      },
-    ]);
-    messageToneRow.define("height", 40);
-    messageToneRow.refresh();
-  }
+    // Only redefine if currently vertical (check for 'rows' definition)
+    if (messageToneRow && messageToneRow.config.rows && messageToneRow.config.rows.length > 0) {
+        messageToneRow.define("rows", []); // Clear rows
+        messageToneRow.define("cols", desktopMessageToneCols);
+        messageToneRow.define("height", 40);
+        messageToneRow.refresh();
+    }
 
-  if (groupToneRow) {
-    groupToneRow.define("rows", []);
-    groupToneRow.define("cols", [
-      { view: "label", label: "Groups", width: 100, css: "tone-label" },
-      {
-        view: "button",
-        type: "icon",
-        icon: "mdi mdi-play",
-        width: 40,
-        click: "playGroupTone",
-        css: "play-button",
-      },
-      {
-        view: "richselect",
-        name: "group_tone",
-        options: ["Default", "Chime", "Beep", "Custom"],
-        value: "Default",
-        css: "tone-select",
-      },
-    ]);
-    groupToneRow.define("height", 40);
-    groupToneRow.refresh();
-  }
+    if (groupToneRow && groupToneRow.config.rows && groupToneRow.config.rows.length > 0) {
+        groupToneRow.define("rows", []); // Clear rows
+        groupToneRow.define("cols", desktopGroupToneCols);
+        groupToneRow.define("height", 40);
+        groupToneRow.refresh();
+    }
 }
 
-// Function to reset button layout to horizontal
+// Function to reset button layout to original horizontal layout
 function resetButtonLayout() {
-  const resetButton = $$("reset_button");
-  const saveButton = $$("save_button");
-
-  if (resetButton && saveButton) {
-    resetButton.getParentView().define("rows", []);
-    resetButton.getParentView().define("cols", [
-      {},
-      {
-        view: "button",
-        id: "reset_button",
-        value: "Reset to Default",
-        width: 150,
-        css: "reset-button",
-      },
-      { width: 10 },
-      {
-        view: "button",
-        id: "save_button",
-        value: "Save Changes",
-        width: 150,
-        css: "webix_primary save-button",
-      },
-    ]);
-    resetButton.getParentView().refresh();
-  }
+    const actionButtonsRow = $$("settings_action_buttons");
+    // Only redefine if currently vertical (check for 'rows' definition)
+    if (actionButtonsRow && actionButtonsRow.config.rows && actionButtonsRow.config.rows.length > 0) {
+        actionButtonsRow.define("rows", []); // Clear rows
+        actionButtonsRow.define("cols", desktopButtonCols);
+        actionButtonsRow.refresh();
+    }
 }
 
-// // Function to add responsive styles
-// function addResponsiveStyles() {
-//   webix.html.addStyle(`
-//         /* Base styles */
-//         .settings-title h2 {
-//             color: #3498db;
-//             padding: 10px;
-//             border-bottom: 1px solid #eee;
-//             font-size: 24px;
-//             margin-bottom: 10px;
-//         }
-        
-//         .webix_fieldset {
-//             margin-bottom: 15px;
-//         }
-        
-//         .webix_fieldset legend {
-//             font-weight: bold;
-//             color: #2980b9;
-//             padding: 0 10px;
-//         }
-        
-//         .webix_switch.webix_el_switch .webix_switch_box {
-//             background-color: #e0e0e0;
-//         }
-        
-//         .webix_switch.webix_el_switch .webix_switch_box.webix_switch_on {
-//             background-color: #27ae60;
-//         }
-        
-//         .save-button button {
-//             background-color: #2980b9;
-//             border-radius: 4px;
-//         }
-        
-//         .reset-button button {
-//             background-color: #bdc3c7;
-//             border-radius: 4px;
-//         }
-        
-//         .play-button button {
-//             background-color: #3498db;
-//             color: white;
-//             border-radius: 4px;
-//         }
-        
-//         /* Improve accessibility */
-//         [tabFocus="true"]:focus {
-//             outline: 2px solid #3498db;
-//             box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-//         }
-        
-//         /* Responsive styles */
-//         @media (max-width: 767px) {
-//             /* Mobile styles */
-//             .webix_fieldset {
-//                 padding: 5px !important;
-//             }
-            
-//             .webix_view.webix_form {
-//                 padding: 5px !important;
-//             }
-            
-//             .webix_el_box input, .webix_el_box select, .webix_el_box textarea {
-//                 width: 100% !important;
-//             }
-            
-//             .tone-select .webix_el_box {
-//                 width: calc(100% - 50px) !important;
-//             }
-            
-//             .webix_el_button button {
-//                 width: 100% !important;
-//             }
-//         }
-        
-//         @media (min-width: 768px) and (max-width: 991px) {
-//             /* Tablet styles */
-//             .webix_fieldset {
-//                 padding: 10px !important;
-//             }
-//         }
-//     `);
+// --- CSS for a more professional look (place this in your main CSS file) ---
 
+
+// --- Sound Playback Functions (enhanced to handle custom tones) ---
+window.playMessageTone = function () {
+    const form = $$("notificationForm");
+    if (!form) return;
+
+    const values = form.getValues();
+    const tone = values.message_tone;
+    let audioPath = "";
+
+    if (tone === "Custom") {
+        audioPath = values.custom_message_tone_path;
+        if (!audioPath) {
+            webix.message({ type: "error", text: "Please provide a URL for the custom message tone." });
+            return;
+        }
+    } else {
+        audioPath = `/sounds/${tone.toLowerCase()}.mp3`; // Assuming tones are in /sounds/
+    }
+
+    webix.message(`Playing "${tone}" message tone.`);
+    try {
+        const audio = new Audio(audioPath);
+        audio.play().catch((e) => console.error("Error playing sound:", e));
+    } catch (e) {
+        console.error("Error with audio playback:", e);
+        webix.message({ type: "error", text: "Failed to play sound. Check the URL or file format." });
+    }
+};
+
+window.playGroupTone = function () {
+    const form = $$("notificationForm");
+    if (!form) return;
+
+    const values = form.getValues();
+    const tone = values.group_tone;
+    let audioPath = "";
+
+    if (tone === "Custom") {
+        audioPath = values.custom_group_tone_path;
+        if (!audioPath) {
+            webix.message({ type: "error", text: "Please provide a URL for the custom group tone." });
+            return;
+        }
+    } else {
+        audioPath = `/sounds/${tone.toLowerCase()}.mp3`; // Assuming tones are in /sounds/
+    }
+
+    webix.message(`Playing "${tone}" group tone.`);
+    try {
+        const audio = new Audio(audioPath);
+        audio.play().catch((e) => console.error("Error playing sound:", e));
+    } catch (e) {
+        console.error("Error with audio playback:", e);
+        webix.message({ type: "error", text: "Failed to play sound. Check the URL or file format." });
+    }
+};
