@@ -1,12 +1,12 @@
-# 🌿 Customizable Settings Web App
+# Customizable Settings Web App
 
 This is a modern web application built using the [Webix UI framework](https://webix.com/), allowing users to personalize their experience through a user-friendly interface. The app includes features like:
 
-- ✅ User Authentication (Login/Signup)
-- 🎨 Theme and Layout Customization
-- 📧 Notification and Privacy Settings
-- 📱 Fully Responsive Design
-- 🎠 Carousel for Visual Appeal
+- User Authentication (Login/Signup)
+- Theme and Layout Customization
+- Notification and Privacy Settings
+- Fully Responsive Design
+- Carousel for Visual Appeal
 
 ---
 
